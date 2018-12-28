@@ -28,7 +28,7 @@ namespace FrameworkRepositoryGenerico.Repository.Repositories
             => Context.Set<TEntity>().ToList();
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicade) 
-            => Context.Set<TEntity>().Where(predicade);
+            => Context.Set<TEntity>().Where(predicade).ToList();
         
                
         public void Add(TEntity entity) 
