@@ -10,36 +10,63 @@ using FrameworkRepositoryGenerico.Repository.RepositoriesModels;
 namespace FrameworkRepositoryGenerico.WebAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class ClienteController : Controller
+    [ApiController]
+    public class ClienteController : ControllerBase
     {
         private readonly IRepositoryCliente RepositoryCliente;
 
         public ClienteController(IRepositoryCliente repositoryCliente)
             => RepositoryCliente = repositoryCliente;
 
-        [HttpGet("{id:int}")]
-        public IActionResult GetCliente(int id) {
+
+        [HttpGet]
+        public IEnumerable<Cliente> Get() {
+            var clientes = RepositoryCliente.GetAll();
+            return clientes;
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
             var cliente = RepositoryCliente.Get(id);
             return Ok(cliente);
         }
 
-        [HttpGet]
-        public IActionResult GetClientes() 
-            =>Ok(RepositoryCliente.GetAll());
 
-        [HttpPost]
-        public IActionResult AddCliente() {
-            var cliente = new Cliente
-            {
-                Nome= "Camilla Norberto",
-                Cpf ="133432555",
-                Rg ="24242442"
-            };
-            RepositoryCliente.Add(cliente);
-            RepositoryCliente.Save();
 
-            return Created("", "Cliente criado com sucesso");
-        }
-        
+
+        //
+        //
+        //
+        //
+        //
+        //
+
+        ////[HttpGet]
+        ////public IActionResult GetClientes()
+        ////    => Ok(RepositoryCliente.GetAll());
+
+        //[HttpGet("/getclienteall")]
+        //public IActionResult GetClienteAll() 
+        //    => Ok(RepositoryCliente.GetAll());
+
+
+        //[HttpPost]
+        //public IActionResult AddCliente()
+        //{
+        //    var cliente = new Cliente
+        //    {
+        //        Nome = "Camilla Norberto",
+        //        Cpf = "133432555",
+        //        Rg = "24242442"
+        //    };
+        //    RepositoryCliente.Add(cliente);
+        //    RepositoryCliente.Save();
+
+        //    return Created("", "Cliente criado com sucesso");
+        //}
+
+
+
     }
 }

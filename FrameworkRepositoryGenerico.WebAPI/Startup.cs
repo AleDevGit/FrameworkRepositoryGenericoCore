@@ -32,13 +32,13 @@ namespace FrameworkRepositoryGenerico.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<MyCadastroContext>(
                 options => options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")
                 )
             );
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IRepositoryCliente, RepositoryCliente>();
             services.AddScoped<IRepositoryEndereco, RepositoryEndereco>();
             services.AddScoped<IRepositoryTipoTelefone, RepositoryTipoTelefone>();
@@ -59,7 +59,6 @@ namespace FrameworkRepositoryGenerico.WebAPI
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
