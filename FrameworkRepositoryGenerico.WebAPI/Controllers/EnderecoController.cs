@@ -10,42 +10,36 @@ using FrameworkRepositoryGenerico.Repository.RepositoriesModels;
 namespace FrameworkRepositoryGenerico.WebAPI.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Endereco/{Id}")]
-    [ApiController]
+    [Route("api/Enderecos/{EnderecoId}")]
     public class EnderecoController : Controller
     {
         private readonly IRepositoryEndereco _repositoryEndereco;
 
-        public EnderecoController(IRepositoryEndereco repositoryEndereco)
-            => _repositoryEndereco = repositoryEndereco;
-
-        // http://localhost:<Porta>/api/Endereco/11
-        public IActionResult Get(int Id)
+        public EnderecoController(IRepositoryEndereco repository)
         {
-            var endereco  = _repositoryEndereco.Get(Id);
-            return Ok(endereco);
-            // return endereco;
+            _repositoryEndereco = repository;
         }
 
-        // http://localhost:<Porta>/api/Endereco/?Id=11
-        // http://localhost:<Porta>/api/Endereco/?Id=11&logradouro=dave
-        // http://localhost:<Porta>/api/Endereco/?Id=11&logradouro=dave&ClienteId=15
+        // http://localhost:<port>/api/Endereco/{Id}
+        public IActionResult Get(int EnderecoId)
+        {
+            var endereco = _repositoryEndereco.Get(EnderecoId);
+            return Ok(endereco);
+        }
+
+        // http://localhost:<port>/api/Endereco/?IdCliente={IdCliente}
+        // http://localhost:<port>/api/Endereco/?IdTipoEndereco={IdTipoEndereco}
+        // http://localhost:<port>/api/Endereco/?IdTipoEndereco={IdTipoEndereco}&IdCliente={IdCliente}
         [HttpGet("/api/Endereco/")]
-        public IActionResult Get(Endereco enderecoModel)
+        public IActionResult Get(Endereco queryModel)
         {
-
-            var endereco = _repositoryEndereco.Find(x => x.IdCliente == enderecoModel.IdCliente).ToList();
-            return Ok(endereco);
-
-            //return Ok(enderecoModel);
+            List<Endereco> Endereco = new List<Endereco>();
+            if (queryModel.IdCliente != 0 )
+            {
+                Endereco = _repositoryEndereco.Find(x => x.IdCliente == queryModel.IdCliente).ToList();
+            }
+            
+            return Ok(Endereco);
         }
-
-        // http://localhost:27624/api/account/11/manager/22/role/33
-        [HttpGet("/api/Endereco/{AccountId}/Manager/{ManagerId}/Role/{RoleId}")]
-        public IActionResult Get(int accountId, int managerId, int roleId)
-        {
-            return Ok($"accountId:{accountId}, managerId:{managerId}, roleId:{roleId}");
-        }
-
     }
 }

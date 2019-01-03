@@ -48,11 +48,5 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
             return Ok(telefone);
         }
 
-
-        public class QueryTelefoneModel
-        {
-            public int ClienteId { get; set; }
-
-        }
     }
 }
