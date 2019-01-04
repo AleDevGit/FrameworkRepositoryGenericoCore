@@ -28,8 +28,6 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
         }
 
         // http://localhost:<port>/api/Endereco/?IdCliente={IdCliente}
-        // http://localhost:<port>/api/Endereco/?IdTipoEndereco={IdTipoEndereco}
-        // http://localhost:<port>/api/Endereco/?IdTipoEndereco={IdTipoEndereco}&IdCliente={IdCliente}
         [HttpGet("/api/Endereco/")]
         public IActionResult Get(Endereco queryModel)
         {

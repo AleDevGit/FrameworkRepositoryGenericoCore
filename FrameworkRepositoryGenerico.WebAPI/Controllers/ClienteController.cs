@@ -9,47 +9,46 @@ using FrameworkRepositoryGenerico.Repository.RepositoriesModels;
 
 namespace FrameworkRepositoryGenerico.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ClienteController : ControllerBase
+    //[Produces("application/json")]
+    [Route("api/Clientes/")]
+    public class ClienteController : Controller
     {
-        private readonly IRepositoryCliente RepositoryCliente;
+        private readonly IRepositoryCliente _repositoryCliente;
 
         public ClienteController(IRepositoryCliente repositoryCliente)
-            => RepositoryCliente = repositoryCliente;
-
-
+            => _repositoryCliente = repositoryCliente;
+        
         [HttpGet]
         public IEnumerable<Cliente> Get() {
-            var clientes = RepositoryCliente.GetAll();
+
+            string includes = "Telefone";
+            var clientes = _repositoryCliente.GetAll(includes);
             return clientes;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        // http://localhost:<port>/api/Cliente/?Id={Id}
+        // http://localhost:<port>/api/Cliente/?Cpf={Cpf}
+        [HttpGet("/api/Cliente/")]
+        public IActionResult Get(Cliente queryModel)
         {
-            var cliente = RepositoryCliente.Get(id);
-            return Ok(cliente);
+            List<Cliente> Cliente = new List<Cliente>();
+            if (queryModel.Id != 0)
+            {
+                
+                Cliente = _repositoryCliente.Find(x => x.Id == queryModel.Id).ToList();
+            }
+            else {
+                if (!string.IsNullOrEmpty(queryModel.Cpf))
+                {
+                    Cliente = _repositoryCliente.Find(x => x.Cpf == queryModel.Cpf).ToList();
+                }
+            }
+
+            return Ok(Cliente);
         }
 
 
-
-
-        //
-        //
-        //
-        //
-        //
-        //
-
-        ////[HttpGet]
-        ////public IActionResult GetClientes()
-        ////    => Ok(RepositoryCliente.GetAll());
-
-        //[HttpGet("/getclienteall")]
-        //public IActionResult GetClienteAll() 
-        //    => Ok(RepositoryCliente.GetAll());
-
+    
 
         //[HttpPost]
         //public IActionResult AddCliente()
