@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FrameworkRepositoryGenerico.Repository.InterfaceRepositories;
-using FrameworkRepositoryGenerico.Data.ModelsCadastro;
+using FrameworkRepositoryGenerico.DataBase.ModelsCadastro;
 
 namespace FrameworkRepositoryGenerico.Repository.InterfaceRepositoriesModels
 {
-    public interface IRepositoryTelefone : IRepository<Telefone>
+    public interface IRepositoryTipoTelefone : IRepository<TipoTelefone>
     {
     }
 }

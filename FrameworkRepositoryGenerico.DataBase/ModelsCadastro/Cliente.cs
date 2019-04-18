@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FrameworkRepositoryGenerico.Data.ModelsCadastro
+namespace FrameworkRepositoryGenerico.DataBase.ModelsCadastro
 {
     public partial class Cliente
     {
-        public Cliente()
-        {
-            Endereco = new HashSet<Endereco>();
-            Telefone = new HashSet<Telefone>();
-        }
-
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Cpf { get; set; }

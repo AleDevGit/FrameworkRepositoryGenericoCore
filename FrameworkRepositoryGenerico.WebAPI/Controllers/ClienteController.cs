@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using FrameworkRepositoryGenerico.Data.ModelsCadastro;
+using FrameworkRepositoryGenerico.DataBase.ModelsCadastro;
 using FrameworkRepositoryGenerico.Repository.InterfaceRepositoriesModels;
-using FrameworkRepositoryGenerico.Repository.RepositoriesModels;
+using System;
+using System.Linq;
 
 namespace FrameworkRepositoryGenerico.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ClienteController : ControllerBase
+    [Route("api/[Controller]")]
+    public class ClienteController : Controller
     {
         private readonly IRepositoryCliente RepositoryCliente;
 
@@ -20,53 +17,50 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
 
 
         [HttpGet]
-        public IEnumerable<Cliente> Get() {
-            var clientes = RepositoryCliente.GetAll();
-            return clientes;
+        public IActionResult Get() {
+            try
+            {
+
+                //var queryProdutos = RepositoryCliente.GetAll().SelectMany(p => p.Itens.Select(i => i.Produto));
+
+                //var queryProdutos = cliente.Pedidos.SelectMany(p => p.Itens.Select(i => i.Produto));
+
+                // var clientes = RepositoryCliente.GetAllIncludes(x=> x.Telefone.SelectMany(p => p.TipoTelefone));
+                //return Ok(clientes);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public IActionResult Get(int id)
         {
-            var cliente = RepositoryCliente.Get(id);
-            return Ok(cliente);
+            try
+            {
+                var cliente = RepositoryCliente.Get(id);
+                return Ok(cliente);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
         }
 
-
-
-
-        //
-        //
-        //
-        //
-        //
-        //
-
-        ////[HttpGet]
-        ////public IActionResult GetClientes()
-        ////    => Ok(RepositoryCliente.GetAll());
-
-        //[HttpGet("/getclienteall")]
-        //public IActionResult GetClienteAll() 
-        //    => Ok(RepositoryCliente.GetAll());
-
-
-        //[HttpPost]
-        //public IActionResult AddCliente()
-        //{
-        //    var cliente = new Cliente
-        //    {
-        //        Nome = "Camilla Norberto",
-        //        Cpf = "133432555",
-        //        Rg = "24242442"
-        //    };
-        //    RepositoryCliente.Add(cliente);
-        //    RepositoryCliente.Save();
-
-        //    return Created("", "Cliente criado com sucesso");
-        //}
-
-
-
+        [Route("GetPorTelefone/{Telefone}")]
+        public IActionResult GetPorTelefone(string Telefone)
+        {
+            try
+            {
+                var clientes = RepositoryCliente.GetAll(x => x.Endereco);
+                return Ok(clientes);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
+        }
     }
 }

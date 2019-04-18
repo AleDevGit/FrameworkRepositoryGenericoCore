@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using FrameworkRepositoryGenerico.Data.ModelsCadastro;
-using FrameworkRepositoryGenerico.Repository.InterfaceRepositories;
-using FrameworkRepositoryGenerico.Repository.Repositories;
+using FrameworkRepositoryGenerico.DataBase.ModelsCadastro;
 using FrameworkRepositoryGenerico.Repository.InterfaceRepositoriesModels;
 using FrameworkRepositoryGenerico.Repository.RepositoriesModels;
 using Microsoft.EntityFrameworkCore;
@@ -21,24 +11,25 @@ namespace FrameworkRepositoryGenerico.WebAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IConfiguration Configuration;
+
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder().SetBasePath(env.ContentRootPath)
+               .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<MyCadastroContext>(
-                options => options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")
-                )
-            );
-            //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            var sqlConnection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<MyCadastroContext>(options => options.UseMySql(sqlConnection, b => b.MigrationsAssembly("FrameworkRepositoryGenerico.DataBase")));
+            services.AddMvc();
+
             services.AddScoped<IRepositoryCliente, RepositoryCliente>();
             services.AddScoped<IRepositoryEndereco, RepositoryEndereco>();
             services.AddScoped<IRepositoryTipoTelefone, RepositoryTipoTelefone>();

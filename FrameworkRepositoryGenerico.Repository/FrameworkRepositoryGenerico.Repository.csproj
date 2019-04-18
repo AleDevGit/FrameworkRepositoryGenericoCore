@@ -41,23 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InterfaceRepositoriesModels\IRepositoryEndereco.cs" />
-    <Compile Include="InterfaceRepositoriesModels\IRepositoryTipoTelefone.cs" />
-    <Compile Include="InterfaceRepositoriesModels\IRepositoryTelefone.cs" />
-    <Compile Include="InterfaceRepositoriesModels\IRepositoryCliente.cs" />
-    <Compile Include="InterfaceRepositories\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoriesModels\RepositoryTipoTelefone.cs" />
-    <Compile Include="RepositoriesModels\RepositoryEndereco.cs" />
-    <Compile Include="RepositoriesModels\RepositoryTelefone.cs" />
-    <Compile Include="RepositoriesModels\RepositoryCliente.cs" />
-    <Compile Include="Repositories\Repository.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FrameworkRepositoryGenerico.Data\FrameworkRepositoryGenerico.Data.csproj">
-      <Project>{a0b20b34-85ad-4cce-a8f2-0464ba458a78}</Project>
-      <Name>FrameworkRepositoryGenerico.Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore">

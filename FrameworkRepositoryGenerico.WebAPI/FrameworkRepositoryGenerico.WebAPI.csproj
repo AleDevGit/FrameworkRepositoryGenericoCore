@@ -9,11 +9,12 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FrameworkRepositoryGenerico.Data\FrameworkRepositoryGenerico.Data.csproj" />
-    <ProjectReference Include="..\FrameworkRepositoryGenerico.Repository\FrameworkRepositoryGenerico.Repository.csproj" />
+    <ProjectReference Include="..\FrameworkRepositoryGenerico.DataBase\FrameworkRepositoryGenerico.DataBase.csproj" />
+    <ProjectReference Include="..\FrameworkRepositoryGenerico.Repositories\FrameworkRepositoryGenerico.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

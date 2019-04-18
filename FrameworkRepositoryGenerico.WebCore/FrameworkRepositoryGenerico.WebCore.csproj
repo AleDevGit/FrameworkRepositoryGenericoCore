@@ -13,8 +13,6 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\FrameworkRepositoryGenerico.Data\FrameworkRepositoryGenerico.Data.csproj" />
-    <ProjectReference Include="..\FrameworkRepositoryGenerico.Repository\FrameworkRepositoryGenerico.Repository.csproj" />
     <ProjectReference Include="..\FrameworkRepositoryGenerico.WebAPI\FrameworkRepositoryGenerico.WebAPI.csproj" />
   </ItemGroup>
 

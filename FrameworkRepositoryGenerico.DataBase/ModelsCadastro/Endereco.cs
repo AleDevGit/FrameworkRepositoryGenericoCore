@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FrameworkRepositoryGenerico.Data.ModelsCadastro
+namespace FrameworkRepositoryGenerico.DataBase.ModelsCadastro
 {
     public partial class Endereco
     {
@@ -11,8 +11,7 @@ namespace FrameworkRepositoryGenerico.Data.ModelsCadastro
         public string Uf { get; set; }
         public string Municipio { get; set; }
         public string Bairro { get; set; }
-        public int? IdCliente { get; set; }
-
-        public virtual Cliente IdClienteNavigation { get; set; }
+        
+        public virtual Cliente Cliente { get; set; }
     }
 }

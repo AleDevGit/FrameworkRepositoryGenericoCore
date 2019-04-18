@@ -41,11 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelsCadastro\Cliente.cs" />
-    <Compile Include="ModelsCadastro\Endereco.cs" />
-    <Compile Include="ModelsCadastro\MyCadastroContext.cs" />
-    <Compile Include="ModelsCadastro\Telefone.cs" />
-    <Compile Include="ModelsCadastro\TipoTelefone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

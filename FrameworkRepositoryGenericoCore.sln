@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkRepositoryGenerico.Data", "FrameworkRepositoryGenerico.Data\FrameworkRepositoryGenerico.Data.csproj", "{A0B20B34-85AD-4CCE-A8F2-0464BA458A78}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkRepositoryGenerico.Repository", "FrameworkRepositoryGenerico.Repository\FrameworkRepositoryGenerico.Repository.csproj", "{B18AA3A9-10AC-4C65-A744-D2518CA5CB8A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkRepositoryGenerico.WebAPI", "FrameworkRepositoryGenerico.WebAPI\FrameworkRepositoryGenerico.WebAPI.csproj", "{4BF015B1-66CE-49DB-BE4A-02822B3CCE2F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkRepositoryGenerico.WebCore", "FrameworkRepositoryGenerico.WebCore\FrameworkRepositoryGenerico.WebCore.csproj", "{FD98BF9D-6BC5-41BB-B472-B5C68CDE09F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkRepositoryGenerico.DataBase", "FrameworkRepositoryGenerico.DataBase\FrameworkRepositoryGenerico.DataBase.csproj", "{13DDA1B6-74A4-4536-822F-AF520D9D35FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkRepositoryGenerico.Repositories", "FrameworkRepositoryGenerico.Repositories\FrameworkRepositoryGenerico.Repositories.csproj", "{99D18BE8-C354-4ECA-B0F3-1561046B818D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A0B20B34-85AD-4CCE-A8F2-0464BA458A78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0B20B34-85AD-4CCE-A8F2-0464BA458A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0B20B34-85AD-4CCE-A8F2-0464BA458A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0B20B34-85AD-4CCE-A8F2-0464BA458A78}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B18AA3A9-10AC-4C65-A744-D2518CA5CB8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B18AA3A9-10AC-4C65-A744-D2518CA5CB8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B18AA3A9-10AC-4C65-A744-D2518CA5CB8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B18AA3A9-10AC-4C65-A744-D2518CA5CB8A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4BF015B1-66CE-49DB-BE4A-02822B3CCE2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4BF015B1-66CE-49DB-BE4A-02822B3CCE2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BF015B1-66CE-49DB-BE4A-02822B3CCE2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +25,14 @@ Global
 		{FD98BF9D-6BC5-41BB-B472-B5C68CDE09F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD98BF9D-6BC5-41BB-B472-B5C68CDE09F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD98BF9D-6BC5-41BB-B472-B5C68CDE09F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13DDA1B6-74A4-4536-822F-AF520D9D35FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13DDA1B6-74A4-4536-822F-AF520D9D35FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13DDA1B6-74A4-4536-822F-AF520D9D35FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13DDA1B6-74A4-4536-822F-AF520D9D35FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99D18BE8-C354-4ECA-B0F3-1561046B818D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99D18BE8-C354-4ECA-B0F3-1561046B818D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99D18BE8-C354-4ECA-B0F3-1561046B818D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99D18BE8-C354-4ECA-B0F3-1561046B818D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

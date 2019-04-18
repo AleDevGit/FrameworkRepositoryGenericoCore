@@ -1,14 +1,14 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using FrameworkRepositoryGenerico.Data.ModelsCadastro;
-using FrameworkRepositoryGenerico.Repository.InterfaceRepositoriesModels;
-using FrameworkRepositoryGenerico.Repository.RepositoriesModels;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using Microsoft.AspNetCore.Mvc;
+using FrameworkRepositoryGenerico.Repository.InterfaceRepositoriesModels;
+
 
 namespace FrameworkRepositoryGenerico.WebAPI.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/Telefones/{TelefoneId}")]
+    [Route("api/[Controller]")]
     public class TelefoneController : Controller
     {
         private readonly IRepositoryTelefone _repositoryTelefone;
@@ -19,33 +19,32 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
         }
 
         // http://localhost:<port>/api/telefone/{Id}
-        public IActionResult Get(int TelefoneId)
+        [HttpGet("{id:int}")]
+        public IActionResult Get(int Id)
         {
-            var endereco = _repositoryTelefone.Get(TelefoneId);
-            return Ok(endereco);
+            try
+            {
+                var telefone = _repositoryTelefone.Get(Id);
+                return Ok(telefone);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
         }
 
-        // http://localhost:<port>/api/telefone/?IdCliente={IdCliente}
-        // http://localhost:<port>/api/telefone/?IdTipoTelefone={IdTipoTelefone}
-        // http://localhost:<port>/api/telefone/?IdTipoTelefone={IdTipoTelefone}&IdCliente={IdCliente}
-        [HttpGet("/api/Telefone/")]
-        public IActionResult Get(Telefone queryModel)
+        [HttpGet]
+        public IActionResult Get()
         {
-            List<Telefone> telefone = new List<Telefone>();
-            if (queryModel.IdCliente != 0 && (queryModel.IdTipoTelefone == 0|| queryModel.IdTipoTelefone == null))
+            try
             {
-                telefone = _repositoryTelefone.Find(x => x.IdCliente == queryModel.IdCliente).ToList();
+                var telefone = _repositoryTelefone.GetAllAndCliente();
+                return Ok(telefone);
             }
-            else if (queryModel.IdTipoTelefone != 0 && (queryModel.IdCliente == 0 || queryModel.IdCliente == null))
+            catch (Exception ex)
             {
-                telefone = _repositoryTelefone.Find(x => x.IdTipoTelefone == queryModel.IdTipoTelefone).ToList();
+                return BadRequest($"Erro: {ex.Message}");
             }
-            else if (queryModel.IdTipoTelefone != 0 && queryModel.IdCliente != 0)
-            {
-                telefone = _repositoryTelefone.Find(x => x.IdCliente == queryModel.IdCliente && x.IdTipoTelefone == queryModel.IdTipoTelefone).ToList();
-            }
-            
-            return Ok(telefone);
         }
 
     }

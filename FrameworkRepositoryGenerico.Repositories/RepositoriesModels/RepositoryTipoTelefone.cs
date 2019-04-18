@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FrameworkRepositoryGenerico.Repository.Repositories;
-using FrameworkRepositoryGenerico.Data.ModelsCadastro;
+using FrameworkRepositoryGenerico.DataBase.ModelsCadastro;
 using FrameworkRepositoryGenerico.Repository.InterfaceRepositoriesModels;
 
 namespace FrameworkRepositoryGenerico.Repository.RepositoriesModels
 {
-   public class RepositoryCliente : Repository<Cliente>, IRepositoryCliente
+   public class RepositoryTipoTelefone : Repository<TipoTelefone>, IRepositoryTipoTelefone
     {
-        public RepositoryCliente(MyCadastroContext context) : base(context)
+        public RepositoryTipoTelefone(MyCadastroContext context) : base(context)
         {
 
         }
