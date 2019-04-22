@@ -33,6 +33,7 @@ namespace FrameworkRepositoryGenerico.WebAPI
         {
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().AddXmlSerializerFormatters();
             services.AddDbContext<MyCadastroContext>(
                 options => options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")

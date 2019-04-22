@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using FrameworkRepositoryGenerico.Repository.Repositories;
 using FrameworkRepositoryGenerico.Data.ModelsCadastro;
 using FrameworkRepositoryGenerico.Repository.InterfaceRepositoriesModels;
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace FrameworkRepositoryGenerico.Repository.RepositoriesModels
 {
@@ -15,5 +17,7 @@ namespace FrameworkRepositoryGenerico.Repository.RepositoriesModels
         {
 
         }
+
+      
     }
 }
