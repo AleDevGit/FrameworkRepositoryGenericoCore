@@ -1,4 +1,4 @@
-﻿using FrameworkRepositoryGenerico.DataBase.ModelsCadastro;
+﻿using FrameworkRepositoryGenerico.DataBase.Entidades;
 using FrameworkRepositoryGenerico.Repository.InterfaceRepositories;
 using Microsoft.EntityFrameworkCore;
 using System;

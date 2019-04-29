@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using FrameworkRepositoryGenerico.DataBase.ModelsCadastro;
+using FrameworkRepositoryGenerico.DataBase.Entidades;
 using FrameworkRepositoryGenerico.Repository.InterfaceRepositoriesModels;
 using System;
 using System.Linq;
@@ -16,31 +16,17 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
             => RepositoryCliente = repositoryCliente;
 
 
-        [HttpGet]
-        public IActionResult Get() {
-            try
-            {
 
-                //var queryProdutos = RepositoryCliente.GetAll().SelectMany(p => p.Itens.Select(i => i.Produto));
-
-                //var queryProdutos = cliente.Pedidos.SelectMany(p => p.Itens.Select(i => i.Produto));
-
-                // var clientes = RepositoryCliente.GetAllIncludes(x=> x.Telefone.SelectMany(p => p.TipoTelefone));
-                //return Ok(clientes);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Erro: {ex.Message}");
-            }
-        }
-
+        /// <summary>
+        /// Buscar Cliente por ID
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("{id:int}")]
         public IActionResult Get(int id)
         {
             try
             {
-                var cliente = RepositoryCliente.Get(id);
+                var cliente = RepositoryCliente.GetCliente(id);
                 return Ok(cliente);
             }
             catch (Exception ex)
@@ -48,13 +34,13 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
                 return BadRequest($"Erro: {ex.Message}");
             }
         }
-
+                
         [Route("GetPorTelefone/{Telefone}")]
         public IActionResult GetPorTelefone(string Telefone)
         {
             try
             {
-                var clientes = RepositoryCliente.GetAll(x => x.Endereco);
+                var clientes = RepositoryCliente.GetAll(x => x.Enderecos);
                 return Ok(clientes);
             }
             catch (Exception ex)

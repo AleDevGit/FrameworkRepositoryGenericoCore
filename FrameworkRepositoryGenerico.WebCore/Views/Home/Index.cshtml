@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FrameworkRepositoryGenerico.DataBase.ModelsCadastro.Cliente>
+﻿@model IEnumerable<FrameworkRepositoryGenerico.DataBase.Entidades.Cliente>
 
 @{
     ViewData["Title"] = "Index";
@@ -19,11 +19,9 @@
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cpf)
+                @Html.DisplayNameFor(model => model.Cpf_Cnpj)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rg)
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -37,10 +35,7 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cpf)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rg)
+                @Html.DisplayFor(modelItem => item.Cpf_Cnpj)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

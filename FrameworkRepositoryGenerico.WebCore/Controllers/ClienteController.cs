@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FrameworkRepositoryGenerico.WebCore.Models;
 using FrameworkRepositoryGenerico.WebCore.Helper;
-using FrameworkRepositoryGenerico.DataBase.ModelsCadastro;
+using FrameworkRepositoryGenerico.DataBase.Entidades;
 using Newtonsoft.Json;
 
 namespace FrameworkRepositoryGenerico.WebCore.Controllers

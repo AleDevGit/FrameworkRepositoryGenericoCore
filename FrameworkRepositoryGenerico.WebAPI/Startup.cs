@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using FrameworkRepositoryGenerico.DataBase.ModelsCadastro;
+using FrameworkRepositoryGenerico.DataBase.Entidades;
 using FrameworkRepositoryGenerico.Repository.InterfaceRepositoriesModels;
 using FrameworkRepositoryGenerico.Repository.RepositoriesModels;
 using Microsoft.EntityFrameworkCore;
@@ -27,14 +27,11 @@ namespace FrameworkRepositoryGenerico.WebAPI
         {
 
             var sqlConnection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<MyCadastroContext>(options => options.UseMySql(sqlConnection, b => b.MigrationsAssembly("FrameworkRepositoryGenerico.DataBase")));
+            services.AddDbContext<MyCadastroContext>(options => options.UseMySql(sqlConnection, b => b.MigrationsAssembly("FrameworkRepositoryGenerico.WebAPI")));
             services.AddMvc();
 
             services.AddScoped<IRepositoryCliente, RepositoryCliente>();
-            services.AddScoped<IRepositoryEndereco, RepositoryEndereco>();
-            services.AddScoped<IRepositoryTipoTelefone, RepositoryTipoTelefone>();
-            services.AddScoped<IRepositoryTelefone, RepositoryTelefone>();
-
+         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

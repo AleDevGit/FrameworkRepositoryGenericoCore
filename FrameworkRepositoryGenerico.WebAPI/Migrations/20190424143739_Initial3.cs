@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace FrameworkRepositoryGenerico.DataBase.Migrations
+namespace FrameworkRepositoryGenerico.WebAPI.Migrations
 {
-    public partial class INITIAL : Migration
+    public partial class Initial3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,16 +23,16 @@ namespace FrameworkRepositoryGenerico.DataBase.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TipoTelefone",
+                name: "TipoContato",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Tipo = table.Column<string>(nullable: true)
+                    Descricao = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TipoTelefone", x => x.Id);
+                    table.PrimaryKey("PK_TipoContato", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -60,31 +60,63 @@ namespace FrameworkRepositoryGenerico.DataBase.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Telefone",
+                name: "Usuario",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Numero = table.Column<string>(nullable: true),
-                    ClienteId = table.Column<int>(nullable: true),
-                    TipoTelefoneId = table.Column<int>(nullable: true)
+                    Nome = table.Column<string>(nullable: true),
+                    Cpf = table.Column<string>(nullable: true),
+                    senha = table.Column<string>(nullable: true),
+                    ClienteId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Telefone", x => x.Id);
+                    table.PrimaryKey("PK_Usuario", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Telefone_Cliente_ClienteId",
+                        name: "FK_Usuario_Cliente_ClienteId",
                         column: x => x.ClienteId,
                         principalTable: "Cliente",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Contato",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Descricao = table.Column<string>(nullable: true),
+                    UsuarioId = table.Column<int>(nullable: true),
+                    TipoContatoId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contato", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Telefone_TipoTelefone_TipoTelefoneId",
-                        column: x => x.TipoTelefoneId,
-                        principalTable: "TipoTelefone",
+                        name: "FK_Contato_TipoContato_TipoContatoId",
+                        column: x => x.TipoContatoId,
+                        principalTable: "TipoContato",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Contato_Usuario_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuario",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contato_TipoContatoId",
+                table: "Contato",
+                column: "TipoContatoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contato_UsuarioId",
+                table: "Contato",
+                column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Endereco_ClienteId",
@@ -92,29 +124,27 @@ namespace FrameworkRepositoryGenerico.DataBase.Migrations
                 column: "ClienteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Telefone_ClienteId",
-                table: "Telefone",
+                name: "IX_Usuario_ClienteId",
+                table: "Usuario",
                 column: "ClienteId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Telefone_TipoTelefoneId",
-                table: "Telefone",
-                column: "TipoTelefoneId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Contato");
+
+            migrationBuilder.DropTable(
                 name: "Endereco");
 
             migrationBuilder.DropTable(
-                name: "Telefone");
+                name: "TipoContato");
+
+            migrationBuilder.DropTable(
+                name: "Usuario");
 
             migrationBuilder.DropTable(
                 name: "Cliente");
-
-            migrationBuilder.DropTable(
-                name: "TipoTelefone");
         }
     }
 }
