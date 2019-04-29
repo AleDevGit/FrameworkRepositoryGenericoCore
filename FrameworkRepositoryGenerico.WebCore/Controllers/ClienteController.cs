@@ -19,9 +19,10 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
         {
             List<Cliente> _Cliente = new List<Cliente>();
             HttpClient client = _clienteApi.Initial();
-            HttpResponseMessage res = await client.GetAsync("api/Cliente");
+            HttpResponseMessage res = await client.GetAsync("api/Clientes");
             if (res.IsSuccessStatusCode)
             {
+                res.Content.Headers.ContentLength = 11987;
                 var result = res.Content.ReadAsStringAsync().Result;
                 _Cliente = JsonConvert.DeserializeObject<List<Cliente>>(result);
             }

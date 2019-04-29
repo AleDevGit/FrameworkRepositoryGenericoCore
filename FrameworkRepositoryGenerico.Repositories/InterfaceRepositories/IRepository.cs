@@ -8,7 +8,7 @@ namespace FrameworkRepositoryGenerico.Repository.InterfaceRepositories
     public interface IRepository<TEntity> where TEntity : class 
     {
         TEntity Get(int id);
-        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> GetAll(string includes = null);
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicade);
         void Add(TEntity entity);
         void AddRange(IEnumerable<TEntity> entities);
