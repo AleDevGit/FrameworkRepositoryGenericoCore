@@ -49,7 +49,6 @@ namespace FrameworkRepositoryGenerico.WebCore
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
@@ -57,7 +56,7 @@ namespace FrameworkRepositoryGenerico.WebCore
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller}/{action}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

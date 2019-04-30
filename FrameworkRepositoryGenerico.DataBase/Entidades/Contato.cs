@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FrameworkRepositoryGenerico.DataBase.Entidades
 {
-    public partial class Contato : Dominio
+    public class Contato : Dominio
     {
         public int Id { get; set; }
         public string Descricao { get; set; }

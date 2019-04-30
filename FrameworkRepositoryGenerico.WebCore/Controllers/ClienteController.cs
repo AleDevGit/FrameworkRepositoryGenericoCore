@@ -1,10 +1,7 @@
 ﻿using System.Net.Http;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using FrameworkRepositoryGenerico.WebCore.Models;
 using FrameworkRepositoryGenerico.WebCore.Helper;
 using FrameworkRepositoryGenerico.DataBase.Entidades;
 using Newtonsoft.Json;
@@ -13,7 +10,7 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
 {
     public class ClienteController : Controller
     {
-        ClienteApi _clienteApi = new ClienteApi();
+        BaseApi _clienteApi = new BaseApi();
 
         public async Task<IActionResult> Index()
         {

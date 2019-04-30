@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using FrameworkRepositoryGenerico.DataBase.Entidades;
-using FrameworkRepositoryGenerico.Repository.InterfaceRepositoriesModels;
+﻿using Microsoft.AspNetCore.Mvc;
+using FrameworkRepositoryGenerico.Repositories.InterfaceRepositoriesModels;
 using System;
-using System.Linq;
 
 namespace FrameworkRepositoryGenerico.WebAPI.Controllers
 {
@@ -35,18 +32,18 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
             }
         }
                 
-        [Route("GetPorTelefone/{Telefone}")]
-        public IActionResult GetPorTelefone(string Telefone)
-        {
-            try
-            {
-                var clientes = RepositoryCliente.GetAll(x => x.Enderecos);
-                return Ok(clientes);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Erro: {ex.Message}");
-            }
-        }
+        //[Route("GetPorTelefone/{Telefone}")]
+        //public IActionResult GetPorTelefone(string Telefone)
+        //{
+        //    try
+        //    {
+        //        var clientes = RepositoryCliente.GetAll(x => x.Enderecos);
+        //        return Ok(clientes);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest($"Erro: {ex.Message}");
+        //    }
+        //}
     }
 }

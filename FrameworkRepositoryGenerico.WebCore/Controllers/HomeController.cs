@@ -12,12 +12,14 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
 {
     public class HomeController : Controller
     {
-        ClienteApi _clienteApi = new ClienteApi();
+        BaseApi _clienteApi = new BaseApi();
         public async Task<IActionResult> Index()
         {
             List<Cliente> _Cliente = new List<Cliente>();
             HttpClient client = _clienteApi.Initial();
-            HttpResponseMessage res = await client.GetAsync("api/Cliente");
+            var url = "api/Cliente";
+
+            HttpResponseMessage res = await client.GetAsync(url);
             if (res.IsSuccessStatusCode) {
                 var result = res.Content.ReadAsStringAsync().Result;
                 _Cliente = JsonConvert.DeserializeObject<List<Cliente>>(result);

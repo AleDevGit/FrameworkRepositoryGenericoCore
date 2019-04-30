@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using FrameworkRepositoryGenerico.Data.ModelsCadastro;
-using FrameworkRepositoryGenerico.Repository.InterfaceRepositoriesModels;
-using FrameworkRepositoryGenerico.Repository.RepositoriesModels;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace FrameworkRepositoryGenerico.WebAPI.Controllers
 {
@@ -13,31 +6,31 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
     [Route("api/Enderecos/{EnderecoId}")]
     public class EnderecoController : Controller
     {
-        private readonly IRepositoryEndereco _repositoryEndereco;
+        //private readonly IRepositoryEndereco _repositoryEndereco;
 
-        public EnderecoController(IRepositoryEndereco repository)
-        {
-            _repositoryEndereco = repository;
-        }
+        //public EnderecoController(IRepositoryEndereco repository)
+        //{
+        //    _repositoryEndereco = repository;
+        //}
 
-        // http://localhost:<port>/api/Endereco/{Id}
-        public IActionResult Get(int EnderecoId)
-        {
-            var endereco = _repositoryEndereco.Get(EnderecoId);
-            return Ok(endereco);
-        }
+        //// http://localhost:<port>/api/Endereco/{Id}
+        //public IActionResult Get(int EnderecoId)
+        //{
+        //    var endereco = _repositoryEndereco.Get(EnderecoId);
+        //    return Ok(endereco);
+        //}
 
-        // http://localhost:<port>/api/Endereco/?IdCliente={IdCliente}
-        [HttpGet("/api/Endereco/")]
-        public IActionResult Get(Endereco queryModel)
-        {
-            List<Endereco> Endereco = new List<Endereco>();
-            if (queryModel.IdCliente != 0 )
-            {
-                Endereco = _repositoryEndereco.Find(x => x.IdCliente == queryModel.IdCliente).ToList();
-            }
+        //// http://localhost:<port>/api/Endereco/?IdCliente={IdCliente}
+        //[HttpGet("/api/Endereco/")]
+        //public IActionResult Get(Endereco queryModel)
+        //{
+        //    List<Endereco> Endereco = new List<Endereco>();
+        //    if (queryModel.IdCliente != 0 )
+        //    {
+        //        Endereco = _repositoryEndereco.Find(x => x.IdCliente == queryModel.IdCliente).ToList();
+        //    }
             
-            return Ok(Endereco);
-        }
+        //    return Ok(Endereco);
+        //}
     }
 }

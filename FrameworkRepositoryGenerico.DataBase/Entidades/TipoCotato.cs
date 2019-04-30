@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace FrameworkRepositoryGenerico.DataBase.Entidades
+﻿namespace FrameworkRepositoryGenerico.DataBase.Entidades
 {
-    public partial class TipoContato : Dominio
+    public class TipoContato : Dominio
     {
         public int Id { get; set; }
         public string Descricao { get; set; }
-        public string Ativo { get; set; }
+        public bool Ativo { get; set; }
 
         public override void Validate()
         {

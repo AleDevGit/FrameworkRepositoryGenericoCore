@@ -1,12 +1,11 @@
 ﻿using FrameworkRepositoryGenerico.DataBase.Entidades;
-using FrameworkRepositoryGenerico.Repository.InterfaceRepositories;
-using Microsoft.EntityFrameworkCore;
+using FrameworkRepositoryGenerico.Repositories.InterfaceRepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace FrameworkRepositoryGenerico.Repository.Repositories
+namespace FrameworkRepositoryGenerico.Repositories.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity>, IDisposable where TEntity : class
     {
@@ -27,9 +26,31 @@ namespace FrameworkRepositoryGenerico.Repository.Repositories
         public IEnumerable<TEntity> GetAll()
             => Context.Set<TEntity>().ToList();
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicade) 
+        public IEnumerable<TEntity> FindAll(Expression<Func<TEntity, bool>> predicade) 
             => Context.Set<TEntity>().Where(predicade).ToList();
-                       
+
+        public bool FindExist(Expression<Func<TEntity, bool>> predicade)
+        {
+            var exist = Context.Set<TEntity>().Where(predicade).ToList();
+
+            if (exist.Count() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public TEntity Find(Expression<Func<TEntity, bool>> predicade) =>
+            Context.Set<TEntity>().Where(predicade).FirstOrDefault();
+        
+            
+
+
+
+
         public void Add(TEntity entity) 
             => Context.Set<TEntity>().Add(entity);
 
@@ -59,38 +80,30 @@ namespace FrameworkRepositoryGenerico.Repository.Repositories
 
 
 
-        //Com Includes
-        public IEnumerable<TEntity> GetAll(params Expression<Func<TEntity, object>>[] include)
-        {
-            try
-            {
-                if (include.Length == 0)
-                    throw new Exception("Número de parametros inválido.");
+        ////Com Includes
+        //public IEnumerable<TEntity> GetAll(params Expression<Func<TEntity, object>>[] include)
+        //{
+        //    try
+        //    {
+        //        if (include.Length == 0)
+        //            throw new Exception("Número de parametros inválido.");
 
-                var query = Context.Set<TEntity>().AsQueryable();
+        //        var query = Context.Set<TEntity>().AsQueryable();
 
-                query = include.Aggregate(query, (current, exp) => current.Include(exp));
+        //        query = include.Aggregate(query, (current, exp) => current.Include(exp));
 
-                IEnumerable<TEntity> result = query.ToList();
-                return result;
-            }
-            catch (Exception ex)
-            {
-                if (ex.InnerException != null)
-                    throw new Exception(ex.InnerException.Message, ex);
-                throw new Exception(ex.Message, ex);
-            }
-        }
-
-
-
-        public IQueryable<TEntity> GetAllIncludes(params Expression<Func<TEntity, object>>[] includeExpressions)
-        {
-            return includeExpressions.Aggregate<Expression<Func<TEntity, object>>, IQueryable<TEntity>>(Context.Set<TEntity>(), (current, expression) => current.Include(expression));
-        }
+        //        IEnumerable<TEntity> result = query.ToList();
+        //        return result;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (ex.InnerException != null)
+        //            throw new Exception(ex.InnerException.Message, ex);
+        //        throw new Exception(ex.Message, ex);
+        //    }
+        //}
 
 
-
-
+       
     }
 }

@@ -8,7 +8,7 @@ namespace FrameworkRepositoryGenerico.DataBase.Entidades
         public string Nome { get; set; }
         public string Cpf { get; set; }
         public string Senha { get; set; }
-        public string Ativo { get; set; }
+        public bool Ativo { get; set; }
 
         public virtual ICollection<UsuarioRegra> UsuarioRegras { get; set; }
 

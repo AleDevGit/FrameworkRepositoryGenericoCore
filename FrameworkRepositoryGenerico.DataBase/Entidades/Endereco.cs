@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FrameworkRepositoryGenerico.DataBase.Entidades
 {
-    public partial class Endereco : Dominio
+    public class Endereco : Dominio
     {
         public int Id { get; set; }
         public string Logradouro { get; set; }
@@ -11,7 +11,7 @@ namespace FrameworkRepositoryGenerico.DataBase.Entidades
         public string Uf { get; set; }
         public string Municipio { get; set; }
         public string Bairro { get; set; }
-        public string Ativo { get; set; }
+        public bool Ativo { get; set; }
 
         public virtual Cliente Cliente { get; set; }
 

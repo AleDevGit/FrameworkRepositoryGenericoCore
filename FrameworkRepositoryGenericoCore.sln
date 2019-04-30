@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkRepositoryGenerico
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkRepositoryGenerico.WebCore", "FrameworkRepositoryGenerico.WebCore\FrameworkRepositoryGenerico.WebCore.csproj", "{FD98BF9D-6BC5-41BB-B472-B5C68CDE09F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkRepositoryGenerico.DataBase", "FrameworkRepositoryGenerico.DataBase\FrameworkRepositoryGenerico.DataBase.csproj", "{13DDA1B6-74A4-4536-822F-AF520D9D35FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkRepositoryGenerico.DataBase", "FrameworkRepositoryGenerico.DataBase\FrameworkRepositoryGenerico.DataBase.csproj", "{13DDA1B6-74A4-4536-822F-AF520D9D35FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkRepositoryGenerico.Repositories", "FrameworkRepositoryGenerico.Repositories\FrameworkRepositoryGenerico.Repositories.csproj", "{99D18BE8-C354-4ECA-B0F3-1561046B818D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkRepositoryGenerico.Repositories", "FrameworkRepositoryGenerico.Repositories\FrameworkRepositoryGenerico.Repositories.csproj", "{99D18BE8-C354-4ECA-B0F3-1561046B818D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

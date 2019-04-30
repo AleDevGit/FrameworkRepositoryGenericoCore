@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace FrameworkRepositoryGenerico.WebCore.Helper
 {
-    public class ClienteApi {
+    public class BaseApi {
         public HttpClient Initial() {
             var client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44343/");
+            client.BaseAddress = new Uri("http://localhost:2131/");
             return client;
         }
     }

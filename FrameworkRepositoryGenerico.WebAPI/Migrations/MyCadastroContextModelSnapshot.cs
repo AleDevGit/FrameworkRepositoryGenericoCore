@@ -17,6 +17,22 @@ namespace FrameworkRepositoryGenerico.WebAPI.Migrations
                 .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Ano", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Ativo");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(150);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ano");
+                });
+
             modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Cliente", b =>
                 {
                     b.Property<int>("Id")
@@ -24,9 +40,13 @@ namespace FrameworkRepositoryGenerico.WebAPI.Migrations
 
                     b.Property<bool>("Ativo");
 
-                    b.Property<string>("Cpf_Cnpj");
+                    b.Property<string>("Cpf_Cnpj")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
-                    b.Property<string>("Nome");
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(150);
 
                     b.Property<int?>("TipoClienteId");
 
@@ -44,7 +64,9 @@ namespace FrameworkRepositoryGenerico.WebAPI.Migrations
 
                     b.Property<bool>("Ativo");
 
-                    b.Property<string>("Descricao");
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(250);
 
                     b.Property<int?>("TipoContatoId");
 
@@ -64,19 +86,29 @@ namespace FrameworkRepositoryGenerico.WebAPI.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Ativo");
+                    b.Property<bool>("Ativo");
 
-                    b.Property<string>("Bairro");
+                    b.Property<string>("Bairro")
+                        .IsRequired()
+                        .HasMaxLength(100);
 
-                    b.Property<string>("Cep");
+                    b.Property<string>("Cep")
+                        .IsRequired()
+                        .HasMaxLength(8);
 
                     b.Property<int?>("ClienteId");
 
-                    b.Property<string>("Logradouro");
+                    b.Property<string>("Logradouro")
+                        .IsRequired()
+                        .HasMaxLength(250);
 
-                    b.Property<string>("Municipio");
+                    b.Property<string>("Municipio")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<string>("Uf");
+                    b.Property<string>("Uf")
+                        .IsRequired()
+                        .HasMaxLength(2);
 
                     b.HasKey("Id");
 
@@ -85,14 +117,48 @@ namespace FrameworkRepositoryGenerico.WebAPI.Migrations
                     b.ToTable("Endereco");
                 });
 
+            modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Fabricante", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Ativo");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(150);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Fabricante");
+                });
+
+            modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Modelo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Ativo");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(150);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Modelo");
+                });
+
             modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Regra", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Ativo");
+                    b.Property<bool>("Ativo");
 
-                    b.Property<string>("Descricao");
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(250);
 
                     b.HasKey("Id");
 
@@ -104,9 +170,11 @@ namespace FrameworkRepositoryGenerico.WebAPI.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Ativo");
+                    b.Property<bool>("Ativo");
 
-                    b.Property<string>("Descricao");
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(150);
 
                     b.HasKey("Id");
 
@@ -118,13 +186,31 @@ namespace FrameworkRepositoryGenerico.WebAPI.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Ativo");
+                    b.Property<bool>("Ativo");
 
-                    b.Property<string>("Descricao");
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(150);
 
                     b.HasKey("Id");
 
                     b.ToTable("TipoContato");
+                });
+
+            modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.TipoProduto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Ativo");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(150);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TipoProduto");
                 });
 
             modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Usuario", b =>
@@ -132,15 +218,21 @@ namespace FrameworkRepositoryGenerico.WebAPI.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Ativo");
+                    b.Property<bool>("Ativo");
 
                     b.Property<int?>("ClienteId");
 
-                    b.Property<string>("Cpf");
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasMaxLength(11);
 
-                    b.Property<string>("Nome");
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(150);
 
-                    b.Property<string>("Senha");
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasMaxLength(400);
 
                     b.HasKey("Id");
 

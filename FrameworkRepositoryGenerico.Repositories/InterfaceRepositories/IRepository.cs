@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 
-namespace FrameworkRepositoryGenerico.Repository.InterfaceRepositories
+namespace FrameworkRepositoryGenerico.Repositories.InterfaceRepositories
 {
     public interface IRepository<TEntity> where TEntity : class 
     {
         TEntity Get(int id);
-        IEnumerable<TEntity> GetAll(string includes = null);
-        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicade);
+        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> FindAll(Expression<Func<TEntity, bool>> predicade);
+        TEntity Find(Expression<Func<TEntity, bool>> predicade);
+        bool FindExist(Expression<Func<TEntity, bool>> predicade);
         void Add(TEntity entity);
         void AddRange(IEnumerable<TEntity> entities);
         void Update(TEntity entity);
@@ -18,9 +19,6 @@ namespace FrameworkRepositoryGenerico.Repository.InterfaceRepositories
         void RemoveRange(IEnumerable<TEntity> entities);
         void Save();
 
-        //Includes
-        IEnumerable<TEntity> GetAll(params Expression<Func<TEntity, object>>[] include);
-        IQueryable<TEntity> GetAllIncludes(params Expression<Func<TEntity, object>>[] includeExpressions);
 
     }
 }
