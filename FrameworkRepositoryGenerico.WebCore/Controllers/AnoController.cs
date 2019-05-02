@@ -2,6 +2,7 @@
 using FrameworkRepositoryGenerico.WebCore.Helper;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -47,16 +48,18 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
             return View();
         }
 
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             var url = _UrlAno + id;
-           Ano _ano = new Ano();
+            Ano _ano = new Ano();
             HttpClient client = _anoApi.Initial();
             HttpResponseMessage res = await client.GetAsync(url);
             if (res.IsSuccessStatusCode)
             {
                 var result = res.Content.ReadAsStringAsync().Result;
                 _ano = JsonConvert.DeserializeObject<Ano>(result);
+                
             }
             return View(_ano);
         }
@@ -72,9 +75,50 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
                 var serializedAno = JsonConvert.SerializeObject(ano);
                 var content = new StringContent(serializedAno, Encoding.UTF8, "application/json");
                 var res = await client.PostAsync(url, content);
+                if (res.IsSuccessStatusCode)
+                {
+                    //return RedirectToAction("Index");
+                }
             }
             return View(ano);
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var url = _UrlAno + id;
+            Ano _ano = new Ano();
+            HttpClient client = _anoApi.Initial();
+            HttpResponseMessage res = await client.GetAsync(url);
+            if (res.IsSuccessStatusCode)
+            {
+                var result = res.Content.ReadAsStringAsync().Result;
+                _ano = JsonConvert.DeserializeObject<Ano>(result);
+
+            }
+            return View(_ano);
+            
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int? id)
+        {
+            var url = _UrlAno + "Delete";
+            Ano _ano = new Ano();
+            HttpClient client = _anoApi.Initial();
+            HttpResponseMessage res = await client.DeleteAsync(String.Format("{0}/{1}", url, id));
+            if (res.IsSuccessStatusCode)
+            {
+                //return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

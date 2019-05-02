@@ -70,7 +70,7 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
             }
         }
 
-        [HttpPost()]
+        [HttpDelete]
         public IActionResult Delete(int id)
         {
             try
