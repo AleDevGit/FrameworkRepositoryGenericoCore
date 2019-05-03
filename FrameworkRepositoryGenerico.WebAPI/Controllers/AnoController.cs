@@ -48,21 +48,33 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
         public IActionResult PostCadastro([FromBody] Ano ano) {
             try
             {
-                var _Ano = _repositoryAno.Find(x => x.Descricao == ano.Descricao);
-                var Msg = "";
-                if (_Ano != null)
+                Ano _Ano = new Ano();
+
+                if (ano.Id > 0)
+                {
+                    _Ano = _repositoryAno.Get(ano.Id);
+                }
+                else {
+                    _Ano = _repositoryAno.Find(x => x.Descricao == ano.Descricao);
+                }
+
+                if (_Ano != null && ano.Id > 0)
                 {
                     _Ano.Descricao = ano.Descricao;
                     _Ano.Ativo = ano.Ativo;
                     _repositoryAno.Update(_Ano);
-                    Msg = "Cadastro atualizado com sucesso.";
+                    _repositoryAno.Save();
                 }
-                else {
+                else if (_Ano == null && ano.Id == 0 ) {
                     _repositoryAno.Add(ano);
-                    Msg = "Cadastro realizado com sucesso.";
+                    _repositoryAno.Save();
                 }
-                _repositoryAno.Save();
-                return Ok(Msg);
+                else
+                {
+                    return BadRequest("Já existe o " + ano.Descricao + " Cadastrado.");
+                }
+                
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -70,7 +82,7 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             try
@@ -80,6 +92,7 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
                 if (_Ano != null)
                 {
                     _repositoryAno.Remove(_Ano);
+                    _repositoryAno.Save();
                 }
 
                 return Ok();
@@ -89,6 +102,9 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
                 return BadRequest($"Erro: {ex.Message}");
             }
         }
+
+
+        
 
 
     }

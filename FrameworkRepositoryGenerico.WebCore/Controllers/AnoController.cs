@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FrameworkRepositoryGenerico.WebCore.Controllers
 {
-    public class AnoController : Controller
+    public class AnoController : Controller 
     {
         BaseApi _anoApi = new BaseApi();
         private readonly string _UrlAno = "api/Ano/";
@@ -25,6 +25,9 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
                 var result = res.Content.ReadAsStringAsync().Result;
                 _ano = JsonConvert.DeserializeObject<List<Ano>>(result);
             }
+
+            TempData["mensagem"] = "Mensagem de sucesso";
+
             return View(_ano);
         }
 
