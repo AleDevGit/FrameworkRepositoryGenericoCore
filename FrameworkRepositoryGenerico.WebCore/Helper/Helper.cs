@@ -12,5 +12,10 @@ namespace FrameworkRepositoryGenerico.WebCore.Helper
             client.BaseAddress = new Uri("http://localhost:2131/");
             return client;
         }
+
+        public string UriApi() {
+            var uriApi = "http://localhost:2131/";
+            return uriApi;
+        }
     }
 }

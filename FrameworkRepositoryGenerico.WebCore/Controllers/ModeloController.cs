@@ -1,6 +1,5 @@
 ﻿using FrameworkRepositoryGenerico.DataBase.Entidades;
 using FrameworkRepositoryGenerico.WebCore.Helper;
-using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -11,25 +10,25 @@ using System.Threading.Tasks;
 
 namespace FrameworkRepositoryGenerico.WebCore.Controllers
 {
-    public class AnoController : Controller 
+    public class ModeloController : Controller 
     {
-        BaseApi _anoApi = new BaseApi();
-        private readonly string _UrlAno = "api/Ano/";
+        BaseApi _modeloApi = new BaseApi();
+        private readonly string _UrlModelo = "api/Modelo/";
 
         public async Task<IActionResult> Index() {
-            List<Ano> _ano = new List<Ano>();
-            HttpClient client = _anoApi.Initial();
-            var url = _UrlAno;
+            List<Modelo> _modelo = new List<Modelo>();
+            HttpClient client = _modeloApi.Initial();
+            var url = _UrlModelo;
             HttpResponseMessage res = await client.GetAsync(url);
             if (res.IsSuccessStatusCode)
             {
                 var result = res.Content.ReadAsStringAsync().Result;
-                _ano = JsonConvert.DeserializeObject<List<Ano>>(result);
+                _modelo = JsonConvert.DeserializeObject<List<Modelo>>(result);
             }
 
             TempData["mensagem"] = "Mensagem de sucesso";
 
-            return View(_ano);
+            return View(_modelo);
         }
 
         [HttpGet]
@@ -40,13 +39,13 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind] Ano ano)
+        public async Task<IActionResult> Create([Bind] Modelo modelo)
         {
 
-            var url = _UrlAno + "Cadastrar";
-            HttpClient client = _anoApi.Initial();
-            var serializedAno = JsonConvert.SerializeObject(ano);
-            var content = new StringContent(serializedAno, Encoding.UTF8, "application/json");
+            var url = _UrlModelo + "Cadastrar";
+            HttpClient client = _modeloApi.Initial();
+            var serializedModelo = JsonConvert.SerializeObject(modelo);
+            var content = new StringContent(serializedModelo, Encoding.UTF8, "application/json");
             var res = await client.PostAsync(url,content);
 
             return View();
@@ -55,36 +54,36 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            var url = _UrlAno + id;
-            Ano _ano = new Ano();
-            HttpClient client = _anoApi.Initial();
+            var url = _UrlModelo + id;
+            Modelo _modelo = new Modelo();
+            HttpClient client = _modeloApi.Initial();
             HttpResponseMessage res = await client.GetAsync(url);
             if (res.IsSuccessStatusCode)
             {
                 var result = res.Content.ReadAsStringAsync().Result;
-                _ano = JsonConvert.DeserializeObject<Ano>(result);
+                _modelo = JsonConvert.DeserializeObject<Modelo>(result);
                 
             }
-            return View(_ano);
+            return View(_modelo);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind] Ano ano)
+        public async Task<IActionResult> Edit(int id, [Bind] Modelo modelo)
         {
             if (ModelState.IsValid)
             {
-                var url = _UrlAno + "Cadastrar";
-                HttpClient client = _anoApi.Initial();
-                var serializedAno = JsonConvert.SerializeObject(ano);
-                var content = new StringContent(serializedAno, Encoding.UTF8, "application/json");
+                var url = _UrlModelo + "Cadastrar";
+                HttpClient client = _modeloApi.Initial();
+                var serializedModelo = JsonConvert.SerializeObject(modelo);
+                var content = new StringContent(serializedModelo, Encoding.UTF8, "application/json");
                 var res = await client.PostAsync(url, content);
                 if (res.IsSuccessStatusCode)
                 {
                     //return RedirectToAction("Index");
                 }
             }
-            return View(ano);
+            return View(modelo);
         }
 
 
@@ -96,17 +95,17 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
                 return NotFound();
             }
 
-            var url = _UrlAno + id;
-            Ano _ano = new Ano();
-            HttpClient client = _anoApi.Initial();
+            var url = _UrlModelo + id;
+            Modelo _modelo = new Modelo();
+            HttpClient client = _modeloApi.Initial();
             HttpResponseMessage res = await client.GetAsync(url);
             if (res.IsSuccessStatusCode)
             {
                 var result = res.Content.ReadAsStringAsync().Result;
-                _ano = JsonConvert.DeserializeObject<Ano>(result);
+                _modelo = JsonConvert.DeserializeObject<Modelo>(result);
 
             }
-            return View(_ano);
+            return View(_modelo);
             
         }
 
@@ -114,12 +113,12 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int? id)
         {
-            string url = _anoApi.UriApi() + _UrlAno + id;
+            string url = _modeloApi.UriApi() + _UrlModelo + id;
 
             using (var httpClient = new HttpClient())
             {
-                    var res = await httpClient.DeleteAsync(url);
-                   
+                var res = await httpClient.DeleteAsync(url);
+
                 if (res.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
@@ -127,8 +126,6 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
 
             }
             return RedirectToAction("Index");
-            
-
         }
     }
 }

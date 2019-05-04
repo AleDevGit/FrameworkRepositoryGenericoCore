@@ -6,17 +6,17 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace FrameworkRepositoryGenerico.WebAPI.Migrations
+namespace FrameworkRepositoryGenerico.DataBase.Migrations
 {
     [DbContext(typeof(MyCadastroContext))]
-    [Migration("20190430183118_Initial")]
-    partial class Initial
+    [Migration("20190504020005_Initiala")]
+    partial class Initiala
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Ano", b =>

@@ -28,11 +28,17 @@ namespace FrameworkRepositoryGenerico.WebAPI
         {
 
             var sqlConnection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<MyCadastroContext>(options => options.UseMySql(sqlConnection, b => b.MigrationsAssembly("FrameworkRepositoryGenerico.WebAPI")));
+            services.AddDbContext<MyCadastroContext>(options => options.UseMySql(sqlConnection, b => b.MigrationsAssembly("FrameworkRepositoryGenerico.DataBase")));
             services.AddMvc();
 
             services.AddScoped<IRepositoryCliente, RepositoryCliente>();
             services.AddScoped<IRepositoryAno, RepositoryAno>();
+            services.AddScoped<IRepositoryFabricante, RepositoryFabricante>();
+            services.AddScoped<IRepositoryModelo, RepositoryModelo>();
+            services.AddScoped<IRepositoryTipoContato, RepositoryTipoContato>();
+            services.AddScoped<IRepositoryTipoProduto, RepositoryTipoProduto>();
+            services.AddScoped<IRepositoryTipoCliente, RepositoryTipoCliente>();
+
 
         }
 
