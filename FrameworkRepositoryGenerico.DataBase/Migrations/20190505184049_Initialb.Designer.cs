@@ -3,14 +3,16 @@ using System;
 using FrameworkRepositoryGenerico.DataBase.Entidades;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FrameworkRepositoryGenerico.DataBase.Migrations
 {
     [DbContext(typeof(MyCadastroContext))]
-    partial class MyCadastroContextModelSnapshot : ModelSnapshot
+    [Migration("20190505184049_Initialb")]
+    partial class Initialb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,22 +33,6 @@ namespace FrameworkRepositoryGenerico.DataBase.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ano");
-                });
-
-            modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Categoria", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("Ativo");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasMaxLength(150);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categoria");
                 });
 
             modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Cliente", b =>

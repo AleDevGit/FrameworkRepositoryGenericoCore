@@ -17,6 +17,7 @@ namespace FrameworkRepositoryGenerico.DataBase.Entidades
         public virtual DbSet<Ano> Ano { get; set; }
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Contato> Contato { get; set; }
+        public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<Endereco> Endereco { get; set; }
         public virtual DbSet<Fabricante> Fabricante { get; set; }
         public virtual DbSet<Modelo> Modelo { get; set; }
@@ -36,6 +37,7 @@ namespace FrameworkRepositoryGenerico.DataBase.Entidades
         {
             modelBuilder.ApplyConfiguration(new AnoConfiguration());
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoriaConfiguration());
             modelBuilder.ApplyConfiguration(new ContatoConfiguration());
             modelBuilder.ApplyConfiguration(new EnderecoConfiguration());
             modelBuilder.ApplyConfiguration(new FabricanteConfiguration());

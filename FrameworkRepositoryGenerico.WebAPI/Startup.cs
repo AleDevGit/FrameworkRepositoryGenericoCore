@@ -38,6 +38,8 @@ namespace FrameworkRepositoryGenerico.WebAPI
             services.AddScoped<IRepositoryTipoContato, RepositoryTipoContato>();
             services.AddScoped<IRepositoryTipoProduto, RepositoryTipoProduto>();
             services.AddScoped<IRepositoryTipoCliente, RepositoryTipoCliente>();
+            services.AddScoped<IRepositoryCategoria, RepositoryCategoria>();
+            services.AddScoped<IRepositoryRegra, RepositoryRegra>();
 
 
         }
