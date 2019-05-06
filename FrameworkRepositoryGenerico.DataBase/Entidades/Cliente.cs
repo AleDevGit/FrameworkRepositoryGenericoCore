@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace FrameworkRepositoryGenerico.DataBase.Entidades
 {
     public class Cliente : Dominio
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Cpf_Cnpj { get; set; }
-        public bool Ativo { get; set; }
 
+        public int Id { get; set; }
+
+        [DisplayName("Nome")]
+        public string Nome { get; set; }
+        [DisplayName("CPF CNPJ")]
+        public string Cpf_Cnpj { get; set; }
+        [DisplayName("Ativo")]
+        public bool Ativo { get; set; }
+        [DisplayName("Tipo de Cliente")]
         public virtual TipoCliente TipoCliente { get; set; }
 
         public virtual ICollection<Endereco> Enderecos { get; set; }

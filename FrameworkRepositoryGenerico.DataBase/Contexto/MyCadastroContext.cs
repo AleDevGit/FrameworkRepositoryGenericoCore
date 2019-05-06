@@ -20,7 +20,7 @@ namespace FrameworkRepositoryGenerico.DataBase.Entidades
         public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<Endereco> Endereco { get; set; }
         public virtual DbSet<Fabricante> Fabricante { get; set; }
-        public virtual DbSet<Modelo> Modelo { get; set; }
+        public virtual DbSet<Montadora> Montadora { get; set; }
         public virtual DbSet<Regra> Regra { get; set; }
         public virtual DbSet<TipoCliente> TipoCliente { get; set; }
         public virtual DbSet<TipoContato> TipoContato { get; set; }
@@ -41,7 +41,7 @@ namespace FrameworkRepositoryGenerico.DataBase.Entidades
             modelBuilder.ApplyConfiguration(new ContatoConfiguration());
             modelBuilder.ApplyConfiguration(new EnderecoConfiguration());
             modelBuilder.ApplyConfiguration(new FabricanteConfiguration());
-            modelBuilder.ApplyConfiguration(new ModeloConfiguration());
+            modelBuilder.ApplyConfiguration(new MontadoraConfiguration());
             modelBuilder.ApplyConfiguration(new RegraConfiguration());
             modelBuilder.ApplyConfiguration(new TipoClienteConfiguration());
             modelBuilder.ApplyConfiguration(new TipoContatoConfiguration());

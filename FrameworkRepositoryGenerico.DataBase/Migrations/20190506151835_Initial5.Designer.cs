@@ -3,14 +3,16 @@ using System;
 using FrameworkRepositoryGenerico.DataBase.Entidades;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FrameworkRepositoryGenerico.DataBase.Migrations
 {
     [DbContext(typeof(MyCadastroContext))]
-    partial class MyCadastroContextModelSnapshot : ModelSnapshot
+    [Migration("20190506151835_Initial5")]
+    partial class Initial5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

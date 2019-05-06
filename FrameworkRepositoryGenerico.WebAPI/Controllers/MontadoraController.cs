@@ -6,21 +6,21 @@ using System;
 namespace FrameworkRepositoryGenerico.WebAPI.Controllers
 {
     [Route("api/[Controller]")]
-    public class ModeloController : Controller
+    public class MontadoraController : Controller
     {
-        private readonly IRepositoryModelo _repositoryModelo;
+        private readonly IRepositoryMontadora _repositoryMontadora;
 
-        public ModeloController(IRepositoryModelo repositoryModelo)
+        public MontadoraController(IRepositoryMontadora repositoryMontadora)
         {
-            _repositoryModelo = repositoryModelo;
+            _repositoryMontadora = repositoryMontadora;
         }
 
         public IActionResult GetAll()
         {
             try
             {
-                var Modelo = _repositoryModelo.GetAll();
-                return Ok(Modelo);
+                var Montadora = _repositoryMontadora.GetAll();
+                return Ok(Montadora);
             }
             catch (Exception ex)
             {
@@ -33,8 +33,8 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
         {
             try
             {
-                var Modelo = _repositoryModelo.Get(id);
-                return Ok(Modelo);
+                var Montadora = _repositoryMontadora.Get(id);
+                return Ok(Montadora);
             }
             catch (Exception ex)
             {
@@ -44,36 +44,36 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
 
         [HttpPost]
         [Route("Cadastrar")]
-        public IActionResult PostCadastro([FromBody] Modelo modelo)
+        public IActionResult PostCadastro([FromBody] Montadora montadora)
         {
             try
             {
-                Modelo _Modelo = new Modelo();
+                Montadora _Montadora = new Montadora();
 
-                if (modelo.Id > 0)
+                if (montadora.Id > 0)
                 {
-                    _Modelo = _repositoryModelo.Get(modelo.Id);
+                    _Montadora = _repositoryMontadora.Get(montadora.Id);
                 }
                 else
                 {
-                    _Modelo = _repositoryModelo.Find(x => x.Descricao == modelo.Descricao);
+                    _Montadora = _repositoryMontadora.Find(x => x.Descricao == montadora.Descricao);
                 }
 
-                if (_Modelo != null && modelo.Id > 0)
+                if (_Montadora != null && montadora.Id > 0)
                 {
-                    _Modelo.Descricao = modelo.Descricao;
-                    _Modelo.Ativo = modelo.Ativo;
-                    _repositoryModelo.Update(_Modelo);
-                    _repositoryModelo.Save();
+                    _Montadora.Descricao = montadora.Descricao;
+                    _Montadora.Ativo = montadora.Ativo;
+                    _repositoryMontadora.Update(_Montadora);
+                    _repositoryMontadora.Save();
                 }
-                else if (_Modelo == null && modelo.Id == 0)
+                else if (_Montadora == null && montadora.Id == 0)
                 {
-                    _repositoryModelo.Add(modelo);
-                    _repositoryModelo.Save();
+                    _repositoryMontadora.Add(montadora);
+                    _repositoryMontadora.Save();
                 }
                 else
                 {
-                    return BadRequest("Já existe o " + modelo.Descricao + " Cadastrado.");
+                    return BadRequest("Já existe o " + montadora.Descricao + " Cadastrado.");
                 }
 
                 return Ok();
@@ -89,12 +89,12 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
         {
             try
             {
-                var _Modelo = _repositoryModelo.Get(id);
+                var _Montadora = _repositoryMontadora.Get(id);
 
-                if (_Modelo != null)
+                if (_Montadora != null)
                 {
-                    _repositoryModelo.Remove(_Modelo);
-                    _repositoryModelo.Save();
+                    _repositoryMontadora.Remove(_Montadora);
+                    _repositoryMontadora.Save();
                 }
 
                 return Ok();

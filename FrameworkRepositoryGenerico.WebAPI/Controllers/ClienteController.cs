@@ -7,12 +7,24 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
     [Route("api/[Controller]")]
     public class ClienteController : Controller
     {
-        private readonly IRepositoryCliente RepositoryCliente;
+        private readonly IRepositoryCliente _repositoryCliente;
 
         public ClienteController(IRepositoryCliente repositoryCliente)
-            => RepositoryCliente = repositoryCliente;
+            => _repositoryCliente = repositoryCliente;
 
 
+        public IActionResult GetAll()
+        {
+            try
+            {
+                var Cliente = _repositoryCliente.GetAll();
+                return Ok(Cliente);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
+        }
 
         /// <summary>
         /// Buscar Cliente por ID
@@ -23,7 +35,7 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
         {
             try
             {
-                var cliente = RepositoryCliente.GetCliente(id);
+                var cliente = _repositoryCliente.GetCliente(id);
                 return Ok(cliente);
             }
             catch (Exception ex)
@@ -31,19 +43,7 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
                 return BadRequest($"Erro: {ex.Message}");
             }
         }
-                
-        //[Route("GetPorTelefone/{Telefone}")]
-        //public IActionResult GetPorTelefone(string Telefone)
-        //{
-        //    try
-        //    {
-        //        var clientes = RepositoryCliente.GetAll(x => x.Enderecos);
-        //        return Ok(clientes);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest($"Erro: {ex.Message}");
-        //    }
-        //}
+
+
     }
 }

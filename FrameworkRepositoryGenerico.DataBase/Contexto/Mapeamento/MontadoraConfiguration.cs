@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FrameworkRepositoryGenerico.DataBase.Contexto.Mapeamento
 {
-    public class ModeloConfiguration : IEntityTypeConfiguration<Modelo>
+    public class MontadoraConfiguration : IEntityTypeConfiguration<Montadora>
     {
-        public void Configure(EntityTypeBuilder<Modelo> builder)
+        public void Configure(EntityTypeBuilder<Montadora> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Descricao).IsRequired().HasMaxLength(150);

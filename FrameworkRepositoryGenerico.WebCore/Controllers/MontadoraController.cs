@@ -10,25 +10,25 @@ using System.Threading.Tasks;
 
 namespace FrameworkRepositoryGenerico.WebCore.Controllers
 {
-    public class ModeloController : Controller 
+    public class MontadoraController : Controller 
     {
-        BaseApi _modeloApi = new BaseApi();
-        private readonly string _UrlModelo = "api/Modelo/";
+        BaseApi _montadoraApi = new BaseApi();
+        private readonly string _UrlMontadora = "api/Montadora/";
 
         public async Task<IActionResult> Index() {
-            List<Modelo> _modelo = new List<Modelo>();
-            HttpClient client = _modeloApi.Initial();
-            var url = _UrlModelo;
+            List<Montadora> _montadora = new List<Montadora>();
+            HttpClient client = _montadoraApi.Initial();
+            var url = _UrlMontadora;
             HttpResponseMessage res = await client.GetAsync(url);
             if (res.IsSuccessStatusCode)
             {
                 var result = res.Content.ReadAsStringAsync().Result;
-                _modelo = JsonConvert.DeserializeObject<List<Modelo>>(result);
+                _montadora = JsonConvert.DeserializeObject<List<Montadora>>(result);
             }
 
             TempData["mensagem"] = "Mensagem de sucesso";
 
-            return View(_modelo);
+            return View(_montadora);
         }
 
         [HttpGet]
@@ -39,13 +39,13 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind] Modelo modelo)
+        public async Task<IActionResult> Create([Bind] Montadora montadora)
         {
 
-            var url = _UrlModelo + "Cadastrar";
-            HttpClient client = _modeloApi.Initial();
-            var serializedModelo = JsonConvert.SerializeObject(modelo);
-            var content = new StringContent(serializedModelo, Encoding.UTF8, "application/json");
+            var url = _UrlMontadora + "Cadastrar";
+            HttpClient client = _montadoraApi.Initial();
+            var serializedMontadora = JsonConvert.SerializeObject(montadora);
+            var content = new StringContent(serializedMontadora, Encoding.UTF8, "application/json");
             var res = await client.PostAsync(url,content);
 
             return View();
@@ -54,36 +54,36 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            var url = _UrlModelo + id;
-            Modelo _modelo = new Modelo();
-            HttpClient client = _modeloApi.Initial();
+            var url = _UrlMontadora + id;
+            Montadora _montadora = new Montadora();
+            HttpClient client = _montadoraApi.Initial();
             HttpResponseMessage res = await client.GetAsync(url);
             if (res.IsSuccessStatusCode)
             {
                 var result = res.Content.ReadAsStringAsync().Result;
-                _modelo = JsonConvert.DeserializeObject<Modelo>(result);
+                _montadora = JsonConvert.DeserializeObject<Montadora>(result);
                 
             }
-            return View(_modelo);
+            return View(_montadora);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind] Modelo modelo)
+        public async Task<IActionResult> Edit(int id, [Bind] Montadora montadora)
         {
             if (ModelState.IsValid)
             {
-                var url = _UrlModelo + "Cadastrar";
-                HttpClient client = _modeloApi.Initial();
-                var serializedModelo = JsonConvert.SerializeObject(modelo);
-                var content = new StringContent(serializedModelo, Encoding.UTF8, "application/json");
+                var url = _UrlMontadora + "Cadastrar";
+                HttpClient client = _montadoraApi.Initial();
+                var serializedMontadora = JsonConvert.SerializeObject(montadora);
+                var content = new StringContent(serializedMontadora, Encoding.UTF8, "application/json");
                 var res = await client.PostAsync(url, content);
                 if (res.IsSuccessStatusCode)
                 {
                     //return RedirectToAction("Index");
                 }
             }
-            return View(modelo);
+            return View(montadora);
         }
 
 
@@ -95,17 +95,17 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
                 return NotFound();
             }
 
-            var url = _UrlModelo + id;
-            Modelo _modelo = new Modelo();
-            HttpClient client = _modeloApi.Initial();
+            var url = _UrlMontadora + id;
+            Montadora _montadora = new Montadora();
+            HttpClient client = _montadoraApi.Initial();
             HttpResponseMessage res = await client.GetAsync(url);
             if (res.IsSuccessStatusCode)
             {
                 var result = res.Content.ReadAsStringAsync().Result;
-                _modelo = JsonConvert.DeserializeObject<Modelo>(result);
+                _montadora = JsonConvert.DeserializeObject<Montadora>(result);
 
             }
-            return View(_modelo);
+            return View(_montadora);
             
         }
 
@@ -113,7 +113,7 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int? id)
         {
-            string url = _modeloApi.UriApi() + _UrlModelo + id;
+            string url = _montadoraApi.UriApi() + _UrlMontadora + id;
 
             using (var httpClient = new HttpClient())
             {

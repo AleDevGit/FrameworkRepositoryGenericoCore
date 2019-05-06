@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FrameworkRepositoryGenerico.DataBase.Entidades
 {
-    public class Modelo:Dominio
+    public class Montadora:Dominio
     {
         public int Id { get; set; }
         public string Descricao { get; set; }

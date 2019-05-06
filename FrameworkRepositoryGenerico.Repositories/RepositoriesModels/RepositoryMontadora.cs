@@ -4,10 +4,10 @@ using FrameworkRepositoryGenerico.Repositories.Repositories;
 
 namespace FrameworkRepositoryGenerico.Repositories.RepositoriesModels
 {
-    public class RepositoryModelo : Repository<Modelo>, IRepositoryModelo
+    public class RepositoryMontadora : Repository<Montadora>, IRepositoryMontadora
     {
         private readonly MyCadastroContext _myCadastroContext;
-        public RepositoryModelo(MyCadastroContext context) : base(context) =>
+        public RepositoryMontadora(MyCadastroContext context) : base(context) =>
             _myCadastroContext = context;
 
 
