@@ -12,9 +12,10 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
             <div class="form-group">
-                <label asp-for="TipoCliente" class="control-label"></label>
-                <select id="ddlTipoCliente" class="form-control" />
-                <span asp-validation-for="TipoCliente" class="text-danger"></span>
+                <label asp-for="TipoClienteId" class="control-label"></label>
+                <select asp-for="TipoClienteId" class="form-control" asp-items="ViewBag.TipoClienteId"></select>
+                
+
             </div>
             <div class="form-group">
                 <label asp-for="Cpf_Cnpj" class="control-label"></label>
@@ -50,25 +51,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-       var select = $('#ddlTipoCliente');
-        var urlemp = '@Url.Action("ListarTipoCliente")';
-        $.ajax({
-            type: "POST",
-            url: urlemp,
-            success: function (returndata) {
-                if (returndata.ok) {
-                    select.empty();
-                    $.each(returndata.data, function (index, itemData) {
-                        select.append('<option value=' + itemData.Id + '>' + itemData.label + '</option>');
-                    });
-                    select.show('slow');
-                }
-
-                else {
-                    window.alert('error :' + returndata.message);
-                }
-            }
-        });
+      
     });
         
 

@@ -15,6 +15,9 @@ namespace FrameworkRepositoryGenerico.DataBase.Entidades
         public string Cpf_Cnpj { get; set; }
         [DisplayName("Ativo")]
         public bool Ativo { get; set; }
+
+        public virtual int TipoClienteId { get; set; }
+
         [DisplayName("Tipo de Cliente")]
         public virtual TipoCliente TipoCliente { get; set; }
 

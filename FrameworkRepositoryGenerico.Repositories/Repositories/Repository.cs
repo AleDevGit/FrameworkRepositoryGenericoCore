@@ -1,4 +1,4 @@
-﻿using FrameworkRepositoryGenerico.DataBase.Entidades;
+﻿using FrameworkRepositoryGenerico.DataBase.Contexto;
 using FrameworkRepositoryGenerico.Repositories.InterfaceRepositories;
 using System;
 using System.Collections.Generic;

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using FrameworkRepositoryGenerico.DataBase.Entidades;
+using FrameworkRepositoryGenerico.DataBase.Contexto;
 using FrameworkRepositoryGenerico.Repositories.InterfaceRepositoriesModels;
 using FrameworkRepositoryGenerico.Repositories.RepositoriesModels;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +28,7 @@ namespace FrameworkRepositoryGenerico.WebAPI
         {
 
             var sqlConnection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<MyCadastroContext>(options => options.UseMySql(sqlConnection, b => b.MigrationsAssembly("FrameworkRepositoryGenerico.DataBase")));
+            services.AddDbContext<MyCadastroContext>(options => options.UseLazyLoadingProxies().UseMySql(sqlConnection, b => b.MigrationsAssembly("FrameworkRepositoryGenerico.DataBase")));
             services.AddMvc();
 
             services.AddScoped<IRepositoryCliente, RepositoryCliente>();

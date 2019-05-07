@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FrameworkRepositoryGenerico.DataBase.Migrations
 {
     [DbContext(typeof(MyCadastroContext))]
-    [Migration("20190505184049_Initialb")]
-    partial class Initialb
+    [Migration("20190507191454_Initial6")]
+    partial class Initial6
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Ano", b =>
@@ -35,6 +35,22 @@ namespace FrameworkRepositoryGenerico.DataBase.Migrations
                     b.ToTable("Ano");
                 });
 
+            modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Categoria", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Ativo");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(150);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categoria");
+                });
+
             modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Cliente", b =>
                 {
                     b.Property<int>("Id")
@@ -50,7 +66,7 @@ namespace FrameworkRepositoryGenerico.DataBase.Migrations
                         .IsRequired()
                         .HasMaxLength(150);
 
-                    b.Property<int?>("TipoClienteId");
+                    b.Property<int>("TipoClienteId");
 
                     b.HasKey("Id");
 
@@ -135,7 +151,7 @@ namespace FrameworkRepositoryGenerico.DataBase.Migrations
                     b.ToTable("Fabricante");
                 });
 
-            modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Modelo", b =>
+            modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Montadora", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -148,7 +164,7 @@ namespace FrameworkRepositoryGenerico.DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Modelo");
+                    b.ToTable("Montadora");
                 });
 
             modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Regra", b =>
@@ -265,7 +281,8 @@ namespace FrameworkRepositoryGenerico.DataBase.Migrations
                 {
                     b.HasOne("FrameworkRepositoryGenerico.DataBase.Entidades.TipoCliente", "TipoCliente")
                         .WithMany()
-                        .HasForeignKey("TipoClienteId");
+                        .HasForeignKey("TipoClienteId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("FrameworkRepositoryGenerico.DataBase.Entidades.Contato", b =>

@@ -1,7 +1,8 @@
 ﻿using FrameworkRepositoryGenerico.DataBase.Contexto.Mapeamento;
+using FrameworkRepositoryGenerico.DataBase.Entidades;
 using Microsoft.EntityFrameworkCore;
 
-namespace FrameworkRepositoryGenerico.DataBase.Entidades
+namespace FrameworkRepositoryGenerico.DataBase.Contexto
 {
     public partial class MyCadastroContext : DbContext
     {
