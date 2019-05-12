@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Text;
+using System;
 
 namespace FrameworkRepositoryGenerico.WebCore.Controllers
 {
@@ -15,7 +16,9 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
     {
         
         private readonly string _UrlCliente = "api/Cliente/";
-        
+        private readonly string _UrlTipoCliente = "api/TipoCliente/";
+
+
         BaseApi _clienteApi = new BaseApi();
 
         public async Task<IActionResult> Index()
@@ -30,8 +33,7 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
             }
             return View(_Cliente);
         }
-
-
+        
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -44,7 +46,7 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
         {
             List<TipoCliente> _TipoCliente = new List<TipoCliente>();
             HttpClient client = _clienteApi.Initial();
-            HttpResponseMessage res = await client.GetAsync("api/TipoCliente");
+            HttpResponseMessage res = await client.GetAsync(_UrlTipoCliente);
             if (res.IsSuccessStatusCode)
             {
                 res.Content.Headers.ContentLength = 11987;
@@ -53,40 +55,50 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
             }
             return _TipoCliente.ToList();
 
-            //return Json(new { ok = true, data = _TipoCliente.Select(x => new { id = x.Id, label = x.Descricao }).Distinct(), mensagem = "OK" });
-
         }
-
-
 
         public async Task<IActionResult> Create([Bind("Id,Nome,Cpf_Cnpj,TipoClienteId,Ativo")] Cliente cliente)
         {
-            if (ModelState.IsValid)
+            try
             {
+                if (ModelState.IsValid)
+                {
 
-                //var urlTipoCliente = _UrlTipoCliente + cliente.TipoClienteId;
-                //TipoCliente _tipoCliente = new TipoCliente();
-                //HttpClient clienttipoCliente = _clienteApi.Initial();
-                //HttpResponseMessage restipoCliente = await clienttipoCliente.GetAsync(urlTipoCliente);
-                //if (restipoCliente.IsSuccessStatusCode)
-                //{
-                //    var result = restipoCliente.Content.ReadAsStringAsync().Result;
-                //    _tipoCliente = JsonConvert.DeserializeObject<TipoCliente>(result);
-                //    cliente.TipoCliente = _tipoCliente;
+                    var url = _UrlCliente + "Cadastrar";
+                    HttpClient client = _clienteApi.Initial();
+                    var serializedCategoria = JsonConvert.SerializeObject(cliente);
+                    var content = new StringContent(serializedCategoria, Encoding.UTF8, "application/json");
+                    var res = await client.PostAsync(url, content);
+                    return Created(_UrlCliente, cliente);
+                }
 
-                //}
-
-
-                var url = _UrlCliente + "Cadastrar";
-                HttpClient client = _clienteApi.Initial();
-                var serializedCategoria = JsonConvert.SerializeObject(cliente);
-                var content = new StringContent(serializedCategoria, Encoding.UTF8, "application/json");
-                var res = await client.PostAsync(url, content);
-                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.ToString()}");
             }
             return View();
 
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id)
+        {
+
+            List<TipoCliente> ListaTipoCliente = await ListarTipoCliente();
+            ViewData["TipoClienteId"] = new SelectList(ListaTipoCliente, "Id", "Descricao");
+
+            var url = _UrlCliente + id;
+            Cliente _cliente = new Cliente();
+            HttpClient client = _clienteApi.Initial();
+            HttpResponseMessage res = await client.GetAsync(url);
+            if (res.IsSuccessStatusCode)
+            {
+                var result = res.Content.ReadAsStringAsync().Result;
+                _cliente = JsonConvert.DeserializeObject<Cliente>(result);
+
+            }
+            return View(_cliente);
+        }
     }
 }

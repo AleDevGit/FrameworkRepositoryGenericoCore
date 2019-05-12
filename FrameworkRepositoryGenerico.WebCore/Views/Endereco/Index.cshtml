@@ -1,0 +1,85 @@
+﻿@model FrameworkRepositoryGenerico.DataBase.Entidades.Cliente
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Endereços do Cliente</h1>
+
+
+<table class="table">
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Nome)</td>
+        <td>@Html.DisplayFor(model => model.Nome)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Cpf_Cnpj)</td>
+        <td>@Html.DisplayFor(model => model.Cpf_Cnpj)</td>
+    </tr>
+
+</table>
+<p>
+
+    @Html.ActionLink("Criar Endereço", "Create", new { id = Model.Id }) |
+    <a asp-action="Create">Criar Endereço</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Enderecos.First().Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enderecos.First().Logradouro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enderecos.First().Cep)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enderecos.First().Uf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enderecos.First().Municipio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enderecos.First().Bairro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enderecos.First().Ativo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Enderecos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Logradouro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cep)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Uf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Municipio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bairro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

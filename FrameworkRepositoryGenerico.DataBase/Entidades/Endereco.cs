@@ -13,6 +13,8 @@ namespace FrameworkRepositoryGenerico.DataBase.Entidades
         public string Bairro { get; set; }
         public bool Ativo { get; set; }
 
+
+        public virtual int ClienteId { get; set; }
         public virtual Cliente Cliente { get; set; }
 
         public override void Validate()

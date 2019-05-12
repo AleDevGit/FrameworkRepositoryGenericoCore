@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore.Query;
 
 namespace FrameworkRepositoryGenerico.Repositories.RepositoriesModels
 {
-    public class RepositoryCliente : Repository<Cliente>, IRepositoryCliente
+    public class RepositoryEndereco : Repository<Endereco>, IRepositoryEndereco
     {
         private readonly MyCadastroContext _myCadastroContext;
-        public RepositoryCliente(MyCadastroContext context) : base(context)
+        public RepositoryEndereco(MyCadastroContext context) : base(context)
         {
             _myCadastroContext = context;
 

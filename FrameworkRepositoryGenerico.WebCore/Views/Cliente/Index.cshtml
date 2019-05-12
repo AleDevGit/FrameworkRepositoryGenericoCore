@@ -49,9 +49,11 @@
                     @Html.DisplayFor(modelItem => item.TipoCliente.Descricao)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    <a href="@Url.Action("Index", "Endereco",new { id=item.Id }) )">Details</a>
+                    @Html.ActionLink("Endereço", "Index", new { Controller = "Endereco", action = "Index", ClienteId = item.Id })
+                    @Html.ActionLink("Edit", "Edit", "Endereco", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
             </tr>
             }

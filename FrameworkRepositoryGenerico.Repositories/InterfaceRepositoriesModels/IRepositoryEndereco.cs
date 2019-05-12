@@ -3,7 +3,7 @@ using FrameworkRepositoryGenerico.DataBase.Entidades;
 
 namespace FrameworkRepositoryGenerico.Repositories.InterfaceRepositoriesModels
 {
-    public interface IRepositoryCliente : IRepository<Cliente>
+    public interface IRepositoryEndereco : IRepository<Endereco>
     {
         
     }

@@ -36,7 +36,7 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
         {
             try
             {
-                var cliente = _repositoryCliente.GetCliente(id);
+                var cliente = _repositoryCliente.Get(id);
                 return Ok(cliente);
             }
             catch (Exception ex)

@@ -1,9 +1,7 @@
 ﻿using FrameworkRepositoryGenerico.DataBase.Entidades;
 using FrameworkRepositoryGenerico.WebCore.Helper;
-using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
