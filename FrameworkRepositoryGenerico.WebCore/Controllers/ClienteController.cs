@@ -33,7 +33,21 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
             }
             return View(_Cliente);
         }
-        
+
+        public async Task<IActionResult> IndexCliente(int? id)
+        {
+            var url = _UrlCliente + id;
+            Cliente _Cliente = new Cliente();
+            HttpClient client = _clienteApi.Initial();
+            HttpResponseMessage res = await client.GetAsync(url);
+            if (res.IsSuccessStatusCode)
+            {
+                var result = res.Content.ReadAsStringAsync().Result;
+                _Cliente = JsonConvert.DeserializeObject<Cliente>(result);
+            }
+            return View(_Cliente);
+        }
+
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -57,6 +71,8 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
 
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,Cpf_Cnpj,TipoClienteId,Ativo")] Cliente cliente)
         {
             try
@@ -69,7 +85,9 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
                     var serializedCategoria = JsonConvert.SerializeObject(cliente);
                     var content = new StringContent(serializedCategoria, Encoding.UTF8, "application/json");
                     var res = await client.PostAsync(url, content);
-                    return Created(_UrlCliente, cliente);
+                    //return Created(_UrlCliente, cliente);
+
+                    return RedirectToAction("Index");
                 }
 
             }
@@ -99,6 +117,25 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
 
             }
             return View(_cliente);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind] Cliente cliente)
+        {
+            if (ModelState.IsValid)
+            {
+                var url = _UrlCliente + "Cadastrar";
+                HttpClient client = _clienteApi.Initial();
+                var serializedCategoria = JsonConvert.SerializeObject(cliente);
+                var content = new StringContent(serializedCategoria, Encoding.UTF8, "application/json");
+                var res = await client.PostAsync(url, content);
+                if (res.IsSuccessStatusCode)
+                {
+                    //return RedirectToAction("Index");
+                }
+            }
+            return View(cliente);
         }
     }
 }

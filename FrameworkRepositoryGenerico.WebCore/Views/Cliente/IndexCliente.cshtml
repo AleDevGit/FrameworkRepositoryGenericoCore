@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FrameworkRepositoryGenerico.DataBase.Entidades.Cliente>
+﻿@model FrameworkRepositoryGenerico.DataBase.Entidades.Cliente
 
     @{
         ViewData["Title"] = "Index";
@@ -30,30 +30,28 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
-            {
-            <tr>
+           <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Id)
+                    @Html.DisplayFor(model => model.Id)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
+                    @Html.DisplayFor(model => model.Nome)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Cpf_Cnpj)
+                    @Html.DisplayFor(model => model.Cpf_Cnpj)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Ativo)
+                    @Html.DisplayFor(model => model.Ativo)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TipoCliente.Descricao)
+                    @Html.DisplayFor(model => model.TipoCliente.Descricao)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Endereço", "Index", new { Controller = "Endereco", action = "Index", ClienteId = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                    @Html.ActionLink("Endereço", "Index", new { Controller = "Endereco", action = "Index", ClienteId = Model.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = Model.Id })
                 </td>
             </tr>
-            }
+           
         </tbody>
     </table>
