@@ -1,0 +1,16 @@
+﻿@model FrameworkRepositoryGenerico.DataBase.Entidades.Cliente
+@{
+    ViewData["Title"] = "Pesquisa";
+}
+
+<h1>Pesquisa</h1>
+
+
+<table class="table">
+    <form asp-action="Pesquisar">
+        <label asp-for="Nome" class="control-label"></label>
+        <input asp-for="Nome" class="form-control" />
+        <input type="submit" value="Pesquisar" class="btn btn-default" />
+    </form>
+   
+</table>

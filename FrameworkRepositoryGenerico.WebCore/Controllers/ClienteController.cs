@@ -34,6 +34,31 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
             return View(_Cliente);
         }
 
+        public IActionResult Pesquisar()
+        {
+            
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Pesquisar([Bind("Nome")] Cliente cliente)
+        {
+            if (ModelState.IsValid)
+            {
+                List<Cliente> _Cliente = new List<Cliente>();
+                HttpClient client = _clienteApi.Initial();
+                HttpResponseMessage res = await client.GetAsync(_UrlCliente);
+                if (res.IsSuccessStatusCode)
+                {
+                    var result = res.Content.ReadAsStringAsync().Result;
+                    _Cliente = JsonConvert.DeserializeObject<List<Cliente>>(result);
+                }
+                
+            }
+            return View(cliente);
+        }
+
         public async Task<IActionResult> IndexCliente(int? id)
         {
             var url = _UrlCliente + id;
@@ -85,9 +110,9 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
                     var serializedCategoria = JsonConvert.SerializeObject(cliente);
                     var content = new StringContent(serializedCategoria, Encoding.UTF8, "application/json");
                     var res = await client.PostAsync(url, content);
-                    //return Created(_UrlCliente, cliente);
+                    return Created(_UrlCliente, cliente);
 
-                    return RedirectToAction("Index");
+                    //return RedirectToAction("Index");
                 }
 
             }
