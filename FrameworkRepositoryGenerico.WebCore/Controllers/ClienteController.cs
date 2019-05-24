@@ -46,9 +46,11 @@ namespace FrameworkRepositoryGenerico.WebCore.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                var url = _UrlCliente + cliente.Nome;
                 List<Cliente> _Cliente = new List<Cliente>();
                 HttpClient client = _clienteApi.Initial();
-                HttpResponseMessage res = await client.GetAsync(_UrlCliente);
+                HttpResponseMessage res = await client.GetAsync(url);
                 if (res.IsSuccessStatusCode)
                 {
                     var result = res.Content.ReadAsStringAsync().Result;

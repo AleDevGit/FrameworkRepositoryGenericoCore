@@ -5,6 +5,7 @@ using FrameworkRepositoryGenerico.DataBase.Entidades;
 
 namespace FrameworkRepositoryGenerico.WebAPI.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[Controller]")]
     public class ClienteController : Controller
     {
@@ -37,6 +38,25 @@ namespace FrameworkRepositoryGenerico.WebAPI.Controllers
             try
             {
                 var cliente = _repositoryCliente.Get(id);
+                return Ok(cliente);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
+        }
+
+
+        /// <summary>
+        /// Buscar Cliente por Nome
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("{nome}")]
+        public IActionResult GetClienteNome(string nome)
+        {
+            try
+            {
+                var cliente = _repositoryCliente.FindAll(x=>x.Nome.StartsWith(nome));
                 return Ok(cliente);
             }
             catch (Exception ex)
